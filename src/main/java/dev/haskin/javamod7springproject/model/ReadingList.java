@@ -1,5 +1,6 @@
 package dev.haskin.javamod7springproject.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -31,5 +32,5 @@ public class ReadingList {
     @ManyToMany
     @JoinTable(name = "readingList_book", joinColumns = { @JoinColumn(name = "readinglist_id") }, inverseJoinColumns = {
             @JoinColumn(name = "book_id") })
-    private Set<Book> books;
+    private Set<Book> books = new HashSet<>();
 }
