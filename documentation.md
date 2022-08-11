@@ -6,7 +6,7 @@
 
 ## Relationships
 ### Unidirectional
-- Books -> Authors
+- Books -> Author
 - Users -> Reading List
 - Reading List -> Books 
 
