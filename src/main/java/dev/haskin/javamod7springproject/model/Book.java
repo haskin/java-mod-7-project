@@ -17,11 +17,13 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.LastModifiedDate;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Table(name = "Book")
 @Entity
+@Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data
 public class Book {

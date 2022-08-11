@@ -13,10 +13,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Table(name = "\"User\"")
 @Entity
+@Builder
 @Data
 public class User {
     @Id

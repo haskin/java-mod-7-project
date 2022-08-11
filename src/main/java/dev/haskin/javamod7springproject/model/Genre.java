@@ -11,11 +11,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Table(name = "Genre")
 @Entity
+@Builder
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Genre {

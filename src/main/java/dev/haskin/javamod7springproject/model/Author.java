@@ -7,10 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Table(name = "Author")
 @Entity
+@Builder
 @Data
 public class Author {
     @Id
