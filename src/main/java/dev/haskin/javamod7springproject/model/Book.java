@@ -8,6 +8,8 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -37,4 +39,7 @@ public class Book {
     @LastModifiedDate
     @Column(columnDefinition = "DATE")
     private LocalDate published;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
 }
