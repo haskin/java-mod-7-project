@@ -2,6 +2,7 @@
 - Books in reading list should be set (to remove duplicates)
 - Genre should be unique in books 
 - Deleting a User should delete a Reading List, but not delete Books in the Reading List
+- Deleting a book should delete it from the reading list ????
 
 ## Relationships
 ### Unidirectional

@@ -16,12 +16,15 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Table(name = "Book")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data
 public class Book {
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
