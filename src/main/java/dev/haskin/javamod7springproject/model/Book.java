@@ -42,6 +42,6 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
     @NotNull
-    @ManyToMany(mappedBy = "books", fetch = FetchType.LAZY)
+    @ManyToMany(targetEntity = Book.class, fetch = FetchType.LAZY)
     private Set<Genre> genres;
 }
