@@ -1,12 +1,15 @@
 package dev.haskin.javamod7springproject.model;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
@@ -38,4 +41,7 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
+    @NotNull
+    @ManyToMany(mappedBy = "books", fetch = FetchType.LAZY)
+    private Set<Genre> genres;
 }
