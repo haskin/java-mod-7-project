@@ -39,6 +39,7 @@ public class Book {
     @LastModifiedDate
     @Column(columnDefinition = "DATE")
     private LocalDate published;
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
