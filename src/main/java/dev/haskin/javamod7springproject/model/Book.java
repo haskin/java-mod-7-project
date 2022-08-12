@@ -29,6 +29,7 @@ import lombok.EqualsAndHashCode;
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data
+// @NoArgsConstructor
 public class Book {
     @EqualsAndHashCode.Include
     @Id
@@ -46,8 +47,14 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private Author author;
+    @Builder.Default
     @NotNull
     @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
     @JoinTable(name = "book_genre", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private Set<Genre> genres = new HashSet<>();
+    @Builder.Default
+    @ManyToMany
+    @JoinTable(name = "book_readinglist", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "readinglist_id") })
+    private Set<ReadingList> readingList = new HashSet<>();
 }

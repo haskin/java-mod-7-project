@@ -7,21 +7,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Table(name = "ReadingList")
 @Entity
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Data
+@NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
 public class ReadingList {
     @EqualsAndHashCode.Include
     @Id
@@ -29,8 +33,7 @@ public class ReadingList {
     Long id;
     @NotNull
     private String name;
-    @ManyToMany
-    @JoinTable(name = "readingList_book", joinColumns = { @JoinColumn(name = "readinglist_id") }, inverseJoinColumns = {
-            @JoinColumn(name = "book_id") })
+    @Builder.Default
+    @ManyToMany(mappedBy = "readingList")
     private Set<Book> books = new HashSet<>();
 }

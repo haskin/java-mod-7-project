@@ -7,5 +7,4 @@ import dev.haskin.javamod7springproject.model.Author;
 
 @Repository
 public interface AuthorRepository extends JpaRepository<Author, Long> {
-
 }

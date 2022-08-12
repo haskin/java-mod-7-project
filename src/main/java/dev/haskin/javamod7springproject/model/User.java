@@ -1,5 +1,6 @@
 package dev.haskin.javamod7springproject.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -28,7 +29,9 @@ public class User {
     private String username;
     @NotNull
     private String password;
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @Builder.Default
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE,
+            CascadeType.REFRESH }, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private Set<ReadingList> readingList;
+    private Set<ReadingList> readingList = new HashSet<>();
 }
