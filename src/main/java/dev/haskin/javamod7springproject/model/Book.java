@@ -16,7 +16,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -35,23 +38,29 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotEmpty
     private String title;
-    @NotEmpty
+
+    @NotNull
     @Min(1)
     private int pages;
-    @NotEmpty
+
+    @NotNull
     @LastModifiedDate
     private LocalDate published;
-    @NotEmpty
+
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private Author author;
+
+    @Size(min = 1)
     @Builder.Default
-    @NotEmpty
     @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
     @JoinTable(name = "book_genre", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private Set<Genre> genres = new HashSet<>();
+
     @Builder.Default
     @ManyToMany
     @JoinTable(name = "book_readinglist", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {

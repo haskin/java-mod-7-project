@@ -7,12 +7,15 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 
+import dev.haskin.javamod7springproject.dto.UserAdvanced;
+import dev.haskin.javamod7springproject.dto.UserBasic;
 import dev.haskin.javamod7springproject.model.Author;
 import dev.haskin.javamod7springproject.model.Book;
 import dev.haskin.javamod7springproject.model.Genre;
@@ -47,6 +50,8 @@ public class Javamod7springprojectApplication {
 		private ReadingListRepository readingListRepository;
 		@Autowired
 		private UserRepository userRepository;
+		@Autowired
+		private ModelMapper modelMapper;
 
 		@Override
 		public void run(String... args) throws Exception {
