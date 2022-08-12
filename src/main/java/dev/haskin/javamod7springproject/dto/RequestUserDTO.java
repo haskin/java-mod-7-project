@@ -10,8 +10,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RequestUserDTO {
-    @NotNull
+    @NotEmpty
     private String username;
-    @NotNull
+    @NotEmpty
     private String password;
 }
