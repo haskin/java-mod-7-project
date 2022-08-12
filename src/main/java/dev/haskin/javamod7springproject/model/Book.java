@@ -16,23 +16,27 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.LastModifiedDate;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Table(name = "Book")
 @Entity
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Data
-// @NoArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
 public class Book {
     @EqualsAndHashCode.Include
     @Id
@@ -53,7 +57,7 @@ public class Book {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
-    private Author author;
+    public Author author;
 
     @Size(min = 1)
     @Builder.Default

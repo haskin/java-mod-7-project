@@ -5,11 +5,16 @@ import java.util.Set;
 
 import javax.validation.constraints.NotEmpty;
 
-import dev.haskin.javamod7springproject.model.Book;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@NoArgsConstructor
+@Getter
+@Setter
 public class ReadingListAdvanced {
     Long id;
     @NotEmpty
     private String name;
-    private Set<Book> books = new HashSet<>();
+    private Set<BookBasic> books = new HashSet<>();
 }

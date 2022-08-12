@@ -3,6 +3,7 @@ package dev.haskin.javamod7springproject.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,6 +35,6 @@ public class ReadingList {
     @NotEmpty
     private String name;
     @Builder.Default
-    @ManyToMany(mappedBy = "readingList")
+    @ManyToMany(mappedBy = "readingList", cascade = { CascadeType.MERGE, CascadeType.REFRESH })
     private Set<Book> books = new HashSet<>();
 }

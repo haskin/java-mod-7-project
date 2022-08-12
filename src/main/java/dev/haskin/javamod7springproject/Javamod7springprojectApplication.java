@@ -68,11 +68,11 @@ public class Javamod7springprojectApplication {
 			// Books
 			Book harryPotter = Book.builder().author(rowling).genres(Set.of(nonFiction)).pages(223)
 					.published(LocalDate.of(1995, 06, 26)).title("Sorcerer Stone").build();
-			List<Book> books = bookRepository.saveAll(Set.of(harryPotter));
-
 			// Reading List
 			ReadingList readingList = ReadingList.builder().name("Adrian's List")
-					.books(books.stream().collect(Collectors.toSet())).build();
+					.books(Set.of(harryPotter)).build();
+			harryPotter.setReadingList(Set.of(readingList));
+			bookRepository.saveAll(Set.of(harryPotter));
 
 			// Users
 			userRepository.saveAll(List.of(
