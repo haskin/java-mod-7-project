@@ -9,7 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserResponse {
+public class UserBasic {
+    private Long id;
     @NotEmpty
     private String username;
 }
