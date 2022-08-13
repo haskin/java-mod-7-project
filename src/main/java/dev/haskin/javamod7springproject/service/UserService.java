@@ -1,7 +1,11 @@
 package dev.haskin.javamod7springproject.service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +17,24 @@ import dev.haskin.javamod7springproject.dto.ReadingListAdvanced;
 import dev.haskin.javamod7springproject.dto.ReadingListBasic;
 import dev.haskin.javamod7springproject.dto.UserAdvanced;
 import dev.haskin.javamod7springproject.dto.UserBasic;
+import dev.haskin.javamod7springproject.model.Book;
+import dev.haskin.javamod7springproject.model.ReadingList;
 import dev.haskin.javamod7springproject.model.User;
+import dev.haskin.javamod7springproject.repository.ReadingListRepository;
 import dev.haskin.javamod7springproject.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class UserService {
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
     private ReadingListService readingListService;
+
+    @Autowired
+    private BooksService bookService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -67,5 +79,35 @@ public class UserService {
         return userAdvanced.getReadingList().stream()
                 .map(readingList -> modelMapper.map(readingList, ReadingListBasic.class))
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Creartes a Reading List. It DOES NOT create Books. Can only add books
+     * to the reading list already in the database.
+     * 
+     * @param readingListAdvanced
+     * @return
+     */
+    @Transactional
+    public ReadingListBasic createReadingList(Long userId, @Valid ReadingListAdvanced readingListAdvanced) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        Set<Long> bookIds = readingListAdvanced.getBooks().stream().map(book -> book.getId())
+                .collect(Collectors.toSet());
+        List<Book> books = bookService.getAllBooksFromIds(bookIds);
+        if (books.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid books have been requested");
+        log.debug("Books: {}", books);
+
+        log.info("Adding Reading List to Books & User");
+        ReadingList readingList = modelMapper.map(readingListAdvanced, ReadingList.class);
+        // readingList.add(books);
+        readingList = readingListService.createReadingList(readingList);
+        user.getReadingList().add(readingList);
+        readingList.getBooks().addAll(books);
+        for (Book book : books) {
+            book.getReadingList().add(readingList);
+        }
+        return modelMapper.map(readingList, ReadingListBasic.class);
     }
 }

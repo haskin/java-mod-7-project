@@ -19,7 +19,7 @@ public class ReadingListService {
     private ReadingListRepository readingListRepository;
 
     @Transactional
-    void deleteById(Long id) {
+    public void deleteById(Long id) {
         ReadingList readingList = readingListRepository.getReferenceById(id);
         log.info("Deleting Reading List from all possible Books");
         Set<Book> books = readingList.getBooks();
@@ -29,5 +29,9 @@ public class ReadingListService {
             book.setReadingList(bookReadingList);
         }
         readingListRepository.deleteById(id);
+    }
+
+    public ReadingList createReadingList(ReadingList readingList) {
+        return readingListRepository.save(readingList);
     }
 }

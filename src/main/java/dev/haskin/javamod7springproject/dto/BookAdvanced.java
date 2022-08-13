@@ -12,7 +12,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import dev.haskin.javamod7springproject.model.Genre;
 import dev.haskin.javamod7springproject.model.ReadingList;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +29,6 @@ public class BookAdvanced {
     @Min(1)
     private int pages;
     @NotEmpty
-    @LastModifiedDate
     private LocalDate published;
     private Set<GenreDto> genres = new HashSet<>();
     private Set<ReadingList> readingList = new HashSet<>();

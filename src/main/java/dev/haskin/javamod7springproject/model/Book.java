@@ -66,7 +66,7 @@ public class Book {
     private Set<Genre> genres = new HashSet<>();
 
     @Builder.Default
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "book_readinglist", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {
             @JoinColumn(name = "readinglist_id") })
     private Set<ReadingList> readingList = new HashSet<>();

@@ -28,6 +28,17 @@ public class UserController {
         return userService.getById(id);
     }
 
+    /* Provides fuctionality to create a user with reading list */
+    @PostMapping
+    public UserBasic createUser(@RequestBody UserAdvanced user) {
+        return userService.createUser(user);
+    }
+
+    @DeleteMapping("/{id}")
+    public UserBasic deleteUser(@PathVariable Long id) {
+        return userService.deleteUser(id);
+    }
+
     @GetMapping("/{id}/reading_lists/{list_id}")
     public ReadingListAdvanced getReadingList(@PathVariable Long id, @PathVariable(name = "list_id") Long listId) {
         return userService.getReadingList(id, listId);
@@ -38,15 +49,10 @@ public class UserController {
         return userService.getReadingLists(id);
     }
 
-    /* Provides fuctionality to create a user with reading list */
-    @PostMapping
-    public UserBasic createUser(@RequestBody UserAdvanced user) {
-        return userService.createUser(user);
-    }
-
-    @DeleteMapping("/{id}")
-    public UserBasic deleteUser(@PathVariable Long id) {
-        return userService.deleteUser(id);
+    @PostMapping("/{id}/reading_lists")
+    public ReadingListBasic createReadingList(@PathVariable(value = "id") Long userId,
+            @RequestBody ReadingListAdvanced readingList) {
+        return userService.createReadingList(userId, readingList);
     }
 
     @GetMapping("/test")
