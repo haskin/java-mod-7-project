@@ -2,8 +2,8 @@ package dev.haskin.javamod7springproject.controller;
 
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.haskin.javamod7springproject.dto.ReadingListAdvanced;
 import dev.haskin.javamod7springproject.dto.ReadingListBasic;
 import dev.haskin.javamod7springproject.dto.UserAdvanced;
+import dev.haskin.javamod7springproject.dto.UserBasic;
 import dev.haskin.javamod7springproject.service.UserService;
 
 @RestController
@@ -37,10 +38,15 @@ public class UserController {
         return userService.getReadingLists(id);
     }
 
+    /* Provides fuctionality to create a user with reading list */
     @PostMapping
-    public UserAdvanced create(@RequestBody UserAdvanced user) {
+    public UserBasic createUser(@RequestBody UserAdvanced user) {
+        return userService.createUser(user);
+    }
 
-        return null;
+    @DeleteMapping("/{id}")
+    public UserBasic deleteUser(@PathVariable Long id) {
+        return userService.deleteUser(id);
     }
 
     @GetMapping("/test")

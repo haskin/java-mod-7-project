@@ -7,6 +7,9 @@ import javax.validation.constraints.NotEmpty;
 
 import org.springframework.data.annotation.LastModifiedDate;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,4 +27,6 @@ public class BookBasic {
     @NotEmpty
     @LastModifiedDate
     private LocalDate published;
+    @JsonInclude(Include.NON_NULL)
+    private AuthorDto author;
 }

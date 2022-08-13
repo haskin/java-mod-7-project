@@ -35,6 +35,6 @@ public class ReadingList {
     @NotEmpty
     private String name;
     @Builder.Default
-    @ManyToMany(mappedBy = "readingList", cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+    @ManyToMany(mappedBy = "readingList", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
     private Set<Book> books = new HashSet<>();
 }

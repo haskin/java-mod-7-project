@@ -32,6 +32,6 @@ public class BookAdvanced {
     @NotEmpty
     @LastModifiedDate
     private LocalDate published;
-    private Set<Genre> genres = new HashSet<>();
+    private Set<GenreDto> genres = new HashSet<>();
     private Set<ReadingList> readingList = new HashSet<>();
 }
