@@ -55,7 +55,7 @@ public class Book {
     private LocalDate published;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
     public Author author;
 

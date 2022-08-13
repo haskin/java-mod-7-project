@@ -8,7 +8,6 @@ import javax.validation.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import dev.haskin.javamod7springproject.model.ReadingList;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,5 +22,5 @@ public class UserAdvanced {
     @NotEmpty
     private String password;
     @JsonInclude(Include.NON_EMPTY)
-    Set<ReadingList> readingList = new HashSet<>();
+    private Set<ReadingListAdvanced> readingList = new HashSet<>();
 }
