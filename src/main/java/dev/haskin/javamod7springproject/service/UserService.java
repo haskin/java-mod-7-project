@@ -101,7 +101,6 @@ public class UserService {
 
         log.info("Adding Reading List to Books & User");
         ReadingList readingList = modelMapper.map(readingListAdvanced, ReadingList.class);
-        // readingList.add(books);
         readingList = readingListService.createReadingList(readingList);
         user.getReadingList().add(readingList);
         readingList.getBooks().addAll(books);
