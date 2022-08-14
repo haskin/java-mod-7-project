@@ -9,17 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "Genre")
+@Table(name = "Genre", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 @Entity
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
