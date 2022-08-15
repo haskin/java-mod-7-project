@@ -3,7 +3,6 @@ package dev.haskin.javamod7springproject;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -14,8 +13,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 
-import dev.haskin.javamod7springproject.dto.UserAdvanced;
-import dev.haskin.javamod7springproject.dto.UserBasic;
 import dev.haskin.javamod7springproject.model.Author;
 import dev.haskin.javamod7springproject.model.Book;
 import dev.haskin.javamod7springproject.model.Genre;
@@ -58,12 +55,12 @@ public class Javamod7springprojectApplication {
 			System.out.println("Running");
 
 			// Authors
-			Author rowling = Author.builder().name("J.K. Rowling").build();
+			Author rowling = Author.builder().name("j.k. rowling").build();
 			rowling = authorRepository.save(rowling);
 
 			// Genres
-			Genre fiction = genreRepository.save(Genre.builder().name("Fiction").build());
-			Genre nonFiction = Genre.builder().name("Non-Fiction").build();
+			Genre fiction = genreRepository.save(Genre.builder().name("fiction").build());
+			Genre nonFiction = Genre.builder().name("non-fiction").build();
 
 			// Books
 			Book harryPotter = Book.builder().author(rowling).genres(Set.of(nonFiction)).pages(223)

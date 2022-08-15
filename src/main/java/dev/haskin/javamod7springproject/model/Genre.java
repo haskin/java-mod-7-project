@@ -19,7 +19,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "Genre", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
+// @Table(name = "Genre", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
+@Table(name = "Genre")
 @Entity
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -36,4 +37,8 @@ public class Genre {
     private String name;
     @ManyToMany(mappedBy = "genres", fetch = FetchType.LAZY)
     private Set<Book> books;
+
+    public void setName(String name) {
+        this.name = name.trim().toLowerCase();
+    }
 }

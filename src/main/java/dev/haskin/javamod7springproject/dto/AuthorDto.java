@@ -15,4 +15,8 @@ public class AuthorDto {
     private Long id;
     @NotEmpty
     private String name;
+
+    public void setName(String name) {
+        this.name = name.trim().toLowerCase();
+    }
 }

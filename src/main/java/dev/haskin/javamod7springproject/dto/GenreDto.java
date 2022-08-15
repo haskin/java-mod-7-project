@@ -17,4 +17,8 @@ public class GenreDto {
     private Long id;
     @NotEmpty
     private String name;
+
+    public void setName(String name) {
+        this.name = name.trim().toLowerCase();
+    }
 }

@@ -20,7 +20,6 @@ import dev.haskin.javamod7springproject.dto.UserBasic;
 import dev.haskin.javamod7springproject.model.Book;
 import dev.haskin.javamod7springproject.model.ReadingList;
 import dev.haskin.javamod7springproject.model.User;
-import dev.haskin.javamod7springproject.repository.ReadingListRepository;
 import dev.haskin.javamod7springproject.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,7 +33,7 @@ public class UserService {
     private ReadingListService readingListService;
 
     @Autowired
-    private BooksService bookService;
+    private BookService bookService;
 
     @Autowired
     private ModelMapper modelMapper;

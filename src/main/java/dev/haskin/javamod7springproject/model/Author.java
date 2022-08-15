@@ -26,4 +26,8 @@ public class Author {
     public Long id;
     @NotEmpty
     public String name;
+
+    public void setName(String name) {
+        this.name = name.trim().toLowerCase();
+    }
 }

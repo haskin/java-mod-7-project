@@ -6,13 +6,12 @@ import java.util.Set;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-
-import org.springframework.data.annotation.LastModifiedDate;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import dev.haskin.javamod7springproject.model.ReadingList;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,11 +24,14 @@ public class BookAdvanced {
     Long id;
     @NotEmpty
     private String title;
-    @NotEmpty
+    @NotNull
     @Min(1)
     private int pages;
-    @NotEmpty
+    @NotNull
     private LocalDate published;
+    @NotNull
+    private AuthorDto author;
+    @Size(min = 1)
     private Set<GenreDto> genres = new HashSet<>();
     // private Set<ReadingList> readingList = new HashSet<>();
 }

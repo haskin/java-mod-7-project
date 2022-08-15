@@ -1,6 +1,7 @@
 package dev.haskin.javamod7springproject.service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
@@ -24,6 +25,12 @@ public class GenreService {
     @Autowired
     private ModelMapper modelMapper;
 
+    public Genre getGenreById(Long id) {
+        return genreRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "The genre id: " + id + " was not found"));
+    }
+
     /**
      * Returns a list of books mapped to BookBasic
      * from the given Genre Id. Author is set to null
@@ -46,5 +53,9 @@ public class GenreService {
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The genre with id: " + genreId + " was not found");
         }
+    }
+
+    public Set<Genre> getAllGenresByNames(Set<String> names) {
+        return genreRepository.findAllByNameIn(names);
     }
 }
