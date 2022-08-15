@@ -46,6 +46,14 @@ public class UserService {
         return modelMapper.map(user, UserBasic.class);
     }
 
+    /**
+     * Will create a User and can create a Reading List provided in the request.
+     * Limitation: Will not add any books to the Reading List if provided in
+     * the request.
+     * 
+     * @param userAdvanced
+     * @return
+     */
     public UserBasic createUser(UserAdvanced userAdvanced) {
         User user = modelMapper.map(userAdvanced, User.class);
         return modelMapper.map(userRepository.save(user), UserBasic.class);
@@ -81,8 +89,9 @@ public class UserService {
     }
 
     /**
-     * Creartes a Reading List. It DOES NOT create Books. Can only add books
-     * to the reading list already in the database.
+     * Creates a Reading List. It DOES NOT create Books.
+     * Limitation: Can only add books to the reading list
+     * already in the database.
      * 
      * @param readingListAdvanced
      * @return

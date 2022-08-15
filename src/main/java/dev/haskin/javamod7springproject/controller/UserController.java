@@ -2,6 +2,8 @@ package dev.haskin.javamod7springproject.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +32,7 @@ public class UserController {
 
     /* Provides fuctionality to create a user with reading list */
     @PostMapping
-    public UserBasic createUser(@RequestBody UserAdvanced user) {
+    public UserBasic createUser(@Valid @RequestBody UserAdvanced user) {
         return userService.createUser(user);
     }
 
